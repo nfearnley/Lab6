@@ -13,7 +13,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     @Override
     public Iterator<T> iterator()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new Lab6CollectionIterator<>(this);
     }
 
     @Override

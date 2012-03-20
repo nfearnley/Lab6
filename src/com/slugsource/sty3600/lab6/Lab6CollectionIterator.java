@@ -9,22 +9,30 @@ import java.util.Iterator;
  */
 public class Lab6CollectionIterator<T> implements Iterator<T>
 {
-
+    private int position = 0;
+    private Lab6Collection<T> coll;
+    
+    public Lab6CollectionIterator(Lab6Collection coll)
+    {
+        this.coll = coll;
+    }
+    
     @Override
     public boolean hasNext()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return position < coll.getLength();
     }
 
     @Override
     public T next()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // Return item at position, then increment position
+        return coll.getEntry(position++);
     }
 
     @Override
     public void remove()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("This iterator does not support remove.");
     }
 }
