@@ -16,9 +16,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     @Override
     public Iterator<T> iterator()
     {
-        head = new Node(null);
-        listCount = 0;
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new Lab6CollectionIterator<>(this);
     }
 
     @Override
