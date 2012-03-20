@@ -45,72 +45,250 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     @Override
     public boolean add(int newPosition, T newEntry)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try
+        {
+            Node temp = new Node(newEntry);
+            Node current = head;
+            // crawl to the requested index or the last element in the list,
+            // whichever comes first
+            for(int i = 1; i < newPosition && current.getNext() != null; i++)
+            {
+                current = current.getNext();
+            }
+            // set the new node's next-node reference to this node's next-node reference
+            temp.setNext(current.getNext());
+            // now set this node's next-node reference to the new node
+            current.setNext(temp);
+            listCount++;// increment the number of elements variable
+            return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
     }
 
     @Override
     public T remove(int givenPosition)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try
+        {
+            // if the index is out of range, exit
+            if(givenPosition < 1)
+            {
+                return null;
+            }
+            if(givenPosition > listCount)
+            {
+                return null;                    
+            }
+            T toberemoved=null;
+            Node<T> current = head;
+            for(int i = 1; i < givenPosition; i++)
+            {
+                if(current.getNext() == null)
+                {
+                    return null;
+                }			
+                current = current.getNext();
+            }
+            toberemoved = current.payload;
+            current.setNext(current.getNext().getNext());
+            listCount--; // decrement the number of elements variable
+            return toberemoved;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
     }
 
     @Override
     public void clear()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        head.next = null;
     }
 
     @Override
     public boolean replace(int givenPosition, T newEntry)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+                try
+        {
+            // index must be 1 or higher
+            if(givenPosition < 1)
+            {
+                return false;
+            }
+
+            Node current = head.getNext();
+            for(int i = 1; i < givenPosition; i++)
+            {
+                if(current.getNext() == null)
+                {
+                    return false;
+                }
+                current = current.getNext();
+            }
+            current.payload = newEntry;
+            return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
     }
 
     @Override
     public T getEntry(int givenPosition)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+                // index must be 1 or higher
+        if(givenPosition <= 0)
+        {
+            return null;
+        }
+
+        Node<T> current = head.getNext();
+        for(int i = 1; i < givenPosition; i++)
+        {
+            if(current.getNext() == null)
+            {
+                return null;
+            }
+            current = current.getNext();
+        }
+        return current.getData();
     }
 
     @Override
     public boolean contains(T anEntry)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // index must be 1 or higher
+        if(anEntry == null)
+        {
+            return false;
+        }
+
+        Node current = head.getNext();
+        for(int i = 1; i < listCount; i++)
+        {
+            if(current.getData() == anEntry)
+            {
+                return true;
+            }   
+            current = current.next;
+        } 
+        return false;
     }
 
     @Override
     public int getLength()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return listCount;
     }
 
     @Override
     public boolean isEmpty()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(head.next == null)
+        {
+            return true;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     @Override
     public boolean isFull()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return false;
     }
 
     @Override
     public void display()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Node current = head.getNext();
+        while(current != null)
+        {
+            System.out.println(current.getData().toString());
+            current = current.getNext();
+        }
     }
 
     @Override
     public void swap(int positionOne, int positionTwo)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try
+        {
+            Node tempPositionOne=null;
+            Node tempPositionTwo=null;
+            Object tempObject=null;
+            
+            // index must be 1 or higher
+            if(positionOne < 1 || positionTwo < 1)
+            {
+                //do nothing
+            }
+
+            Node current = head.getNext();
+            for(int i = 1; i < positionOne; i++)
+            {
+                if(current.getNext() == null)
+                {
+                    //do nothing
+                }
+                current = current.getNext();
+            }
+            tempPositionOne = current;
+            tempObject = current.getData();
+            
+            //reset current
+            current = head.getNext();
+            for(int i = 1; i < positionTwo; i++)
+            {
+                if(current.getNext() == null)
+                {
+                    //do nothing
+                }
+                current = current.getNext();
+            }
+            tempPositionTwo = current;
+            
+            tempPositionOne.setData(tempPositionTwo.getData());
+            tempPositionTwo.setData(tempObject);
+        }
+        catch(Exception e)
+        {
+            //do nothing
+        }
     }
 
     @Override
     public boolean equals(ListInterface<T> otherList)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(this.getLength() != otherList.getLength())
+        {
+            return false;
+        }
+        try
+        {
+            for(int i = 1; i < this.getLength();i++)
+            {
+                if(this.getEntry(i) == null && otherList.getEntry(i) != null)
+                {
+                    return false;
+                }
+                if(!this.getEntry(i).equals(otherList.getEntry(i)))
+                {
+                    return false;
+                }
+            }            
+            return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
     }
 }
