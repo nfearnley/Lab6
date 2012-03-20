@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
 {
 
-    private Node head;
+    private Node<T> head;
     private int listCount;
     
     @Override
@@ -24,8 +24,8 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     {
         try
         {
-            Node temp = new Node<T>(newEntry);
-            Node current = head;
+            Node<T> temp = new Node<>(newEntry);
+            Node<T> current = head;
             // starting at the head node, crawl to the end of the list
             while(current.getNext() != null)
             {
@@ -47,8 +47,8 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     {
         try
         {
-            Node temp = new Node(newEntry);
-            Node current = head;
+            Node<T> temp = new Node<>(newEntry);
+            Node<T> current = head;
             // crawl to the requested index or the last element in the list,
             // whichever comes first
             for(int i = 1; i < newPosition && current.getNext() != null; i++)
@@ -82,7 +82,6 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             {
                 return null;                    
             }
-            T toberemoved=null;
             Node<T> current = head;
             for(int i = 1; i < givenPosition; i++)
             {
@@ -92,10 +91,10 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
                 }			
                 current = current.getNext();
             }
-            toberemoved = current.payload;
+            T toBeRemoved = current.payload;
             current.setNext(current.getNext().getNext());
             listCount--; // decrement the number of elements variable
-            return toberemoved;
+            return toBeRemoved;
         }
         catch(Exception e)
         {
@@ -120,7 +119,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
                 return false;
             }
 
-            Node current = head.getNext();
+            Node<T> current = head.getNext();
             for(int i = 1; i < givenPosition; i++)
             {
                 if(current.getNext() == null)
@@ -168,7 +167,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             return false;
         }
 
-        Node current = head.getNext();
+        Node<T> current = head.getNext();
         for(int i = 1; i < listCount; i++)
         {
             if(current.getData() == anEntry)
@@ -208,7 +207,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     @Override
     public void display()
     {
-        Node current = head.getNext();
+        Node<T> current = head.getNext();
         while(current != null)
         {
             System.out.println(current.getData().toString());
@@ -221,9 +220,9 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     {
         try
         {
-            Node tempPositionOne=null;
-            Node tempPositionTwo=null;
-            Object tempObject=null;
+            Node<T> tempPositionOne;
+            Node<T> tempPositionTwo;
+            T tempObject;
             
             // index must be 1 or higher
             if(positionOne < 1 || positionTwo < 1)
@@ -231,7 +230,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
                 //do nothing
             }
 
-            Node current = head.getNext();
+            Node<T> current = head.getNext();
             for(int i = 1; i < positionOne; i++)
             {
                 if(current.getNext() == null)
