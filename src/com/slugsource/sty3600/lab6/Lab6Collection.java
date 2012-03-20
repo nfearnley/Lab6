@@ -12,7 +12,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
 
     private Node<T> head;
     private int listCount;
-    
+
     @Override
     public Iterator<T> iterator()
     {
@@ -27,7 +27,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             Node<T> temp = new Node<>(newEntry);
             Node<T> current = head;
             // starting at the head node, crawl to the end of the list
-            while(current.getNext() != null)
+            while (current.getNext() != null)
             {
                 current = current.getNext();
             }
@@ -35,8 +35,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             current.setNext(temp);
             listCount++;// increment the number of elements variable
             return true;
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             return false;
         }
@@ -51,7 +50,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             Node<T> current = head;
             // crawl to the requested index or the last element in the list,
             // whichever comes first
-            for(int i = 1; i < newPosition && current.getNext() != null; i++)
+            for (int i = 1; i < newPosition && current.getNext() != null; i++)
             {
                 current = current.getNext();
             }
@@ -61,8 +60,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             current.setNext(temp);
             listCount++;// increment the number of elements variable
             return true;
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             return false;
         }
@@ -74,29 +72,28 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
         try
         {
             // if the index is out of range, exit
-            if(givenPosition < 1)
+            if (givenPosition < 1)
             {
                 return null;
             }
-            if(givenPosition > listCount)
+            if (givenPosition > listCount)
             {
-                return null;                    
+                return null;
             }
             Node<T> current = head;
-            for(int i = 1; i < givenPosition; i++)
+            for (int i = 1; i < givenPosition; i++)
             {
-                if(current.getNext() == null)
+                if (current.getNext() == null)
                 {
                     return null;
-                }			
+                }
                 current = current.getNext();
             }
             T toBeRemoved = current.payload;
             current.setNext(current.getNext().getNext());
             listCount--; // decrement the number of elements variable
             return toBeRemoved;
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             return null;
         }
@@ -111,18 +108,18 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     @Override
     public boolean replace(int givenPosition, T newEntry)
     {
-                try
+        try
         {
             // index must be 1 or higher
-            if(givenPosition < 1)
+            if (givenPosition < 1)
             {
                 return false;
             }
 
             Node<T> current = head.getNext();
-            for(int i = 1; i < givenPosition; i++)
+            for (int i = 1; i < givenPosition; i++)
             {
-                if(current.getNext() == null)
+                if (current.getNext() == null)
                 {
                     return false;
                 }
@@ -130,8 +127,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             }
             current.payload = newEntry;
             return true;
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             return false;
         }
@@ -140,16 +136,16 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     @Override
     public T getEntry(int givenPosition)
     {
-                // index must be 1 or higher
-        if(givenPosition <= 0)
+        // index must be 1 or higher
+        if (givenPosition <= 0)
         {
             return null;
         }
 
         Node<T> current = head.getNext();
-        for(int i = 1; i < givenPosition; i++)
+        for (int i = 1; i < givenPosition; i++)
         {
-            if(current.getNext() == null)
+            if (current.getNext() == null)
             {
                 return null;
             }
@@ -162,20 +158,20 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     public boolean contains(T anEntry)
     {
         // index must be 1 or higher
-        if(anEntry == null)
+        if (anEntry == null)
         {
             return false;
         }
 
         Node<T> current = head.getNext();
-        for(int i = 1; i < listCount; i++)
+        for (int i = 1; i < listCount; i++)
         {
-            if(current.getData() == anEntry)
+            if (current.getData() == anEntry)
             {
                 return true;
-            }   
+            }
             current = current.next;
-        } 
+        }
         return false;
     }
 
@@ -188,11 +184,10 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     @Override
     public boolean isEmpty()
     {
-        if(head.next == null)
+        if (head.next == null)
         {
             return true;
-        }
-        else
+        } else
         {
             return true;
         }
@@ -208,7 +203,7 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     public void display()
     {
         Node<T> current = head.getNext();
-        while(current != null)
+        while (current != null)
         {
             System.out.println(current.getData().toString());
             current = current.getNext();
@@ -223,17 +218,17 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             Node<T> tempPositionOne;
             Node<T> tempPositionTwo;
             T tempObject;
-            
+
             // index must be 1 or higher
-            if(positionOne < 1 || positionTwo < 1)
+            if (positionOne < 1 || positionTwo < 1)
             {
                 //do nothing
             }
 
             Node<T> current = head.getNext();
-            for(int i = 1; i < positionOne; i++)
+            for (int i = 1; i < positionOne; i++)
             {
-                if(current.getNext() == null)
+                if (current.getNext() == null)
                 {
                     //do nothing
                 }
@@ -241,23 +236,22 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
             }
             tempPositionOne = current;
             tempObject = current.getData();
-            
+
             //reset current
             current = head.getNext();
-            for(int i = 1; i < positionTwo; i++)
+            for (int i = 1; i < positionTwo; i++)
             {
-                if(current.getNext() == null)
+                if (current.getNext() == null)
                 {
                     //do nothing
                 }
                 current = current.getNext();
             }
             tempPositionTwo = current;
-            
+
             tempPositionOne.setData(tempPositionTwo.getData());
             tempPositionTwo.setData(tempObject);
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             //do nothing
         }
@@ -266,26 +260,25 @@ public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
     @Override
     public boolean equals(ListInterface<T> otherList)
     {
-        if(this.getLength() != otherList.getLength())
+        if (this.getLength() != otherList.getLength())
         {
             return false;
         }
         try
         {
-            for(int i = 1; i < this.getLength();i++)
+            for (int i = 1; i < this.getLength(); i++)
             {
-                if(this.getEntry(i) == null && otherList.getEntry(i) != null)
+                if (this.getEntry(i) == null && otherList.getEntry(i) != null)
                 {
                     return false;
                 }
-                if(!this.getEntry(i).equals(otherList.getEntry(i)))
+                if (!this.getEntry(i).equals(otherList.getEntry(i)))
                 {
                     return false;
                 }
-            }            
+            }
             return true;
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             return false;
         }

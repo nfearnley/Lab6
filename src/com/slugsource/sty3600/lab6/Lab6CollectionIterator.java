@@ -9,14 +9,15 @@ import java.util.Iterator;
  */
 public class Lab6CollectionIterator<T> implements Iterator<T>
 {
+
     private int position = 0;
     private Lab6Collection<T> coll;
-    
+
     public Lab6CollectionIterator(Lab6Collection coll)
     {
         this.coll = coll;
     }
-    
+
     @Override
     public boolean hasNext()
     {
