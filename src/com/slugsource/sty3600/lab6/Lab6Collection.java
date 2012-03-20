@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * 2. Implement a custom collection class that is generic and uses a linked list
  *
- * @author Nathan Fearnley
+ * @author Scott Beaudry
  */
 public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
 {
