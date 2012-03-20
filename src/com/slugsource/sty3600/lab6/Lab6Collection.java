@@ -10,16 +10,38 @@ import java.util.Iterator;
 public class Lab6Collection<T> implements Iterable<T>, ListInterface<T>
 {
 
+    private Node head;
+    private int listCount;
+    
     @Override
     public Iterator<T> iterator()
     {
+        head = new Node(null);
+        listCount = 0;
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean add(T newEntry)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try
+        {
+            Node temp = new Node<T>(newEntry);
+            Node current = head;
+            // starting at the head node, crawl to the end of the list
+            while(current.getNext() != null)
+            {
+                current = current.getNext();
+            }
+            // the last node's "next" reference set to our new node
+            current.setNext(temp);
+            listCount++;// increment the number of elements variable
+            return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
     }
 
     @Override
