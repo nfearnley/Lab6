@@ -9,9 +9,39 @@ package com.slugsource.sty3600.lab6;
 public class Lab6Object implements Comparable<Lab6Object>
 {
 
+    private int value;
+
+    public void setValue(int value)
+    {
+        this.value = value;
+    }
+
+    public int getValue()
+    {
+        return value;
+    }
+
     @Override
     public int compareTo(Lab6Object o)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (o == null)
+        {
+            throw new NullPointerException();
+        }
+
+        int value1 = this.getValue();
+        int value2 = o.getValue();
+        
+        if (value1 > value2)
+        {
+            return +1;
+        } else if (value1 < value2)
+        {
+            return -1;
+        } else
+        {
+            return 0;
+        }
+
     }
 }
