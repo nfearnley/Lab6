@@ -31,7 +31,7 @@ public class Lab6Object implements Comparable<Lab6Object>
 
         int value1 = this.getValue();
         int value2 = o.getValue();
-        
+
         if (value1 > value2)
         {
             return +1;
@@ -42,6 +42,11 @@ public class Lab6Object implements Comparable<Lab6Object>
         {
             return 0;
         }
+    }
 
+    @Override
+    public String toString()
+    {
+        return Integer.toString(value);
     }
 }
